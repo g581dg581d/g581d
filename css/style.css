@@ -154,8 +154,12 @@ body.is-about-open {
 }
 
 .about-panel__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
   min-height: 100%;
-  padding: clamp(70px, 8vw, 140px) var(--page-gap);
+  padding: var(--page-gap);
 }
 
 
