@@ -71,7 +71,8 @@ if (aboutButton && aboutPanel) {
     aboutButton.setAttribute("aria-expanded", "true");
     aboutPanel.setAttribute("aria-hidden", "false");
 
-    document.body.classList.add("about-open");
+    document.documentElement.classList.add("is-about-open");
+    document.body.classList.add("is-about-open");
   };
 
   const closeAbout = () => {
@@ -83,7 +84,8 @@ if (aboutButton && aboutPanel) {
     aboutButton.setAttribute("aria-expanded", "false");
     aboutPanel.setAttribute("aria-hidden", "true");
 
-    document.body.classList.remove("about-open");
+    document.documentElement.classList.remove("is-about-open");
+    document.body.classList.remove("is-about-open");
   };
 
   aboutButton.addEventListener("click", () => {
