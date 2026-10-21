@@ -112,7 +112,7 @@ body.is-about-open {
   right: var(--page-gap);
   z-index: 200;
 
-  padding: 0.6em 1.1em;
+  padding: 0.8em 1.4em;
 
   border: 0;
   border-radius: 999px;
