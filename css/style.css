@@ -27,6 +27,7 @@ body {
   font-style: normal;
 }
 
+html.is-about-open,
 body.is-about-open {
   overflow: hidden;
 }
@@ -139,6 +140,7 @@ body.is-about-open {
   height: 100vh;
 
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 
   background: var(--color-accent);
   color: var(--color-text);
