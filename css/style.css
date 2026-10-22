@@ -1,13 +1,22 @@
 /* --------------------------------------------------
-   Base
+   Variables
 -------------------------------------------------- */
 
 :root {
   --color-bg: #202020;
   --color-text: #f5f5f5;
   --color-accent: rgb(255, 0, 0);
+
   --page-gap: clamp(20px, 2vw, 35px);
+  --display-size: clamp(1.2rem, 3.5vw, 4rem);
+  --display-line-height: 1.2;
+  --logo-width: clamp(80px, 8vw, 160px);
 }
+
+
+/* --------------------------------------------------
+   Base
+-------------------------------------------------- */
 
 * {
   box-sizing: border-box;
@@ -17,6 +26,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+
   background: var(--color-bg);
   color: var(--color-text);
 }
@@ -32,6 +42,20 @@ body.is-about-open {
   overflow: hidden;
 }
 
+.display-text {
+  margin: 0;
+
+  color: var(--color-text);
+  font-size: var(--display-size);
+  line-height: var(--display-line-height);
+}
+
+.site-logo {
+  display: block;
+  width: var(--logo-width);
+  height: auto;
+}
+
 
 /* --------------------------------------------------
    Hero
@@ -40,7 +64,7 @@ body.is-about-open {
 .hero {
   position: relative;
   z-index: 2;
-  background: var(--color-bg);
+
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -50,6 +74,8 @@ body.is-about-open {
   padding: var(--page-gap);
 
   overflow: hidden;
+
+  background: var(--color-bg);
   text-align: left;
 }
 
@@ -72,10 +98,6 @@ body.is-about-open {
   left: var(--page-gap);
   z-index: 2;
 
-  display: block;
-  width: clamp(80px, 8vw, 160px);
-  height: auto;
-
   opacity: 0;
   transform: translateY(20px);
   animation: heroFadeIn 2.25s ease 0.2s forwards;
@@ -84,12 +106,6 @@ body.is-about-open {
 .hero__text {
   position: relative;
   z-index: 2;
-
-  margin: 0;
-
-  color: var(--color-text);
-  font-size: clamp(1.2rem, 3.5vw, 4rem);
-  line-height: 1.2;
 
   opacity: 0;
   transform: translateY(20px);
@@ -143,7 +159,7 @@ body.is-about-open {
 
   overflow: hidden;
 
-  background: #202020;
+  background: var(--color-bg);
   color: var(--color-text);
 
   transform: translateY(100%);
@@ -159,7 +175,6 @@ body.is-about-open {
   inset: 0;
   z-index: 1;
 
-  display: block;
   width: 100%;
   height: 100%;
 
@@ -170,7 +185,7 @@ body.is-about-open {
 .about-panel__inner {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 2;
 
   display: flex;
   flex-direction: column;
@@ -185,14 +200,7 @@ body.is-about-open {
 }
 
 .about-panel__text {
-  position: relative;
-  z-index: 1;
-
-  margin: auto 0 0;
-
-  color: var(--color-text);
-  font-size: clamp(1.2rem, 3.5vw, 4rem);
-  line-height: 1.2;
+  margin-top: auto;
 
   opacity: 0;
   transform: translateY(20px);
@@ -211,12 +219,13 @@ body.is-about-open {
 
 
 /* --------------------------------------------------
-   Work Grid
+   Main / Work
 -------------------------------------------------- */
 
 main {
   position: relative;
   z-index: 2;
+
   background: var(--color-bg);
 }
 
@@ -226,9 +235,18 @@ main {
   padding: var(--page-gap);
 }
 
+.work-grid__intro {
+  margin-bottom: 2vw;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeIn 2.25s ease 0.85s forwards;
+}
+
 .work-grid__row {
   display: grid;
   gap: var(--page-gap);
+
   margin-bottom: var(--page-gap);
 }
 
@@ -242,8 +260,10 @@ main {
 
 .work-grid__image {
   display: block;
+
   width: 100%;
   aspect-ratio: 16 / 9;
+
   object-fit: cover;
 }
 
@@ -267,6 +287,7 @@ main {
 .ventures__title,
 .ventures__text {
   margin: 0;
+
   font-size: clamp(1.5rem, 2.5vw, 3rem);
   line-height: 1.15;
   font-weight: 400;
@@ -290,7 +311,7 @@ main {
 
 
 /* --------------------------------------------------
-   Footer
+   Footer Reveal
 -------------------------------------------------- */
 
 .site-footer {
@@ -320,10 +341,6 @@ main {
   position: absolute;
   top: var(--page-gap);
   left: var(--page-gap);
-
-  display: block;
-  width: clamp(80px, 8vw, 160px);
-  height: auto;
 }
 
 .site-footer__copyright {
@@ -331,11 +348,7 @@ main {
   left: var(--page-gap);
   bottom: var(--page-gap);
 
-  margin: 0;
-  color: var(--color-text);
   text-align: left;
-  font-size: clamp(1.2rem, 3.5vw, 4rem);
-  line-height: 1.2;
 }
 
 
@@ -346,11 +359,7 @@ main {
 @media (max-width: 800px) {
   :root {
     --page-gap: clamp(10px, 2.5vw, 20px);
-  }
-
-  .hero__text,
-  .site-footer__copyright {
-    font-size: clamp(24px, 8vw, 32px);
+    --display-size: clamp(24px, 8vw, 32px);
   }
 
   .work-grid__row--double {
