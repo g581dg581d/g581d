@@ -162,8 +162,10 @@ body.is-about-open {
   height: 100%;
 
   object-fit: cover;
-  opacity: 0.5;
+  filter: brightness(0.5);
   pointer-events: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .about-panel__inner {
