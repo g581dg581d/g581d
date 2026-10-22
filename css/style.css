@@ -299,13 +299,6 @@ main {
   min-height: 100vh;
 
   background: var(--color-bg);
-  opacity: 0;
-
-  transition: opacity 1.5s ease;
-}
-
-.site-footer.is-visible {
-  opacity: 1;
 }
 
 .site-footer__inner {
@@ -313,6 +306,18 @@ main {
 
   min-height: 100vh;
   padding: var(--page-gap);
+
+  opacity: 0;
+  transform: translateY(24px);
+
+  transition:
+    opacity 2.8s ease,
+    transform 2.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-footer.is-visible .site-footer__inner {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .site-footer__logo {
