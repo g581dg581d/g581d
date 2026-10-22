@@ -298,7 +298,27 @@ body.is-about-open {
 }
 
 .site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  min-height: 100vh;
   padding: var(--page-gap);
+}
+
+.site-footer__logo {
+  display: block;
+  width: clamp(80px, 8vw, 160px);
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.site-footer__copyright {
+  margin: 0;
+  text-align: left;
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  line-height: 1.2;
 }
 
 
