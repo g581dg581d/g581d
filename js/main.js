@@ -3,22 +3,38 @@
 -------------------------------------------------- */
 
 const siteFooter = document.querySelector(".site-footer");
+const accentPanel = document.querySelector(".accent-panel");
 
-if (siteFooter) {
-  const footerObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          siteFooter.classList.add("is-visible");
-        }
-      });
-    },
-    {
-      threshold: 0.05
+if (siteFooter && accentPanel) {
+  let footerTicking = false;
+
+  const updateFooterReveal = () => {
+    const rect = accentPanel.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+
+    const progress = Math.min(
+      Math.max((viewportHeight - rect.bottom) / viewportHeight, 0),
+      1
+    );
+
+    siteFooter.style.setProperty("--footer-reveal", progress.toFixed(3));
+    footerTicking = false;
+  };
+
+  const requestFooterRevealUpdate = () => {
+    if (!footerTicking) {
+      window.requestAnimationFrame(updateFooterReveal);
+      footerTicking = true;
     }
-  );
+  };
 
-  footerObserver.observe(siteFooter);
+  updateFooterReveal();
+
+  window.addEventListener("scroll", requestFooterRevealUpdate, {
+    passive: true
+  });
+
+  window.addEventListener("resize", requestFooterRevealUpdate);
 }
 
 
