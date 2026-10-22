@@ -60,6 +60,11 @@ if (heroVideo) {
 
 const aboutButton = document.querySelector(".about-button");
 const aboutPanel = document.querySelector(".about-panel");
+const aboutVideo = document.querySelector(".about-panel__video");
+
+if (aboutVideo) {
+  aboutVideo.load();
+}
 
 if (aboutButton && aboutPanel) {
   const openAbout = () => {
