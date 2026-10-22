@@ -9,11 +9,11 @@ if (siteFooter && accentPanel) {
   let footerTicking = false;
 
   const updateFooterReveal = () => {
-    const rect = accentPanel.getBoundingClientRect();
+    const { bottom } = accentPanel.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
 
     const progress = Math.min(
-      Math.max((viewportHeight - rect.bottom) / viewportHeight, 0),
+      Math.max((viewportHeight - bottom) / viewportHeight, 0),
       1
     );
 
@@ -22,10 +22,10 @@ if (siteFooter && accentPanel) {
   };
 
   const requestFooterRevealUpdate = () => {
-    if (!footerTicking) {
-      window.requestAnimationFrame(updateFooterReveal);
-      footerTicking = true;
-    }
+    if (footerTicking) return;
+
+    footerTicking = true;
+    window.requestAnimationFrame(updateFooterReveal);
   };
 
   updateFooterReveal();
@@ -39,34 +39,25 @@ if (siteFooter && accentPanel) {
 
 
 /* --------------------------------------------------
-   Hero Video Fade on Scroll
+   Hero Video Fade
 -------------------------------------------------- */
 
 const heroVideo = document.querySelector(".hero__video");
 
 if (heroVideo) {
   const updateHeroVideoOpacity = () => {
-    const scrollY = window.scrollY;
-    const viewportHeight = window.innerHeight;
-
     const startOpacity = 0.5;
-
-    const opacity =
-      startOpacity *
-      (1 - scrollY / (viewportHeight * 0.25));
+    const fadeDistance = window.innerHeight * 0.25;
+    const opacity = startOpacity * (1 - window.scrollY / fadeDistance);
 
     heroVideo.style.opacity = Math.max(opacity, 0);
   };
 
   updateHeroVideoOpacity();
 
-  window.addEventListener(
-    "scroll",
-    updateHeroVideoOpacity,
-    {
-      passive: true
-    }
-  );
+  window.addEventListener("scroll", updateHeroVideoOpacity, {
+    passive: true
+  });
 }
 
 
@@ -83,48 +74,25 @@ if (aboutVideo) {
 }
 
 if (aboutButton && aboutPanel) {
-  const openAbout = () => {
-    aboutPanel.classList.add("is-open");
-    aboutButton.classList.add("is-open");
+  const setAboutState = (isOpen) => {
+    aboutPanel.classList.toggle("is-open", isOpen);
+    aboutButton.classList.toggle("is-open", isOpen);
 
-    aboutButton.textContent = "Close";
+    aboutButton.textContent = isOpen ? "Close" : "About";
+    aboutButton.setAttribute("aria-expanded", String(isOpen));
+    aboutPanel.setAttribute("aria-hidden", String(!isOpen));
 
-    aboutButton.setAttribute("aria-expanded", "true");
-    aboutPanel.setAttribute("aria-hidden", "false");
-
-    document.documentElement.classList.add("is-about-open");
-    document.body.classList.add("is-about-open");
-  };
-
-  const closeAbout = () => {
-    aboutPanel.classList.remove("is-open");
-    aboutButton.classList.remove("is-open");
-
-    aboutButton.textContent = "About";
-
-    aboutButton.setAttribute("aria-expanded", "false");
-    aboutPanel.setAttribute("aria-hidden", "true");
-
-    document.documentElement.classList.remove("is-about-open");
-    document.body.classList.remove("is-about-open");
+    document.documentElement.classList.toggle("is-about-open", isOpen);
+    document.body.classList.toggle("is-about-open", isOpen);
   };
 
   aboutButton.addEventListener("click", () => {
-    const isOpen = aboutPanel.classList.contains("is-open");
-
-    if (isOpen) {
-      closeAbout();
-    } else {
-      openAbout();
-    }
+    setAboutState(!aboutPanel.classList.contains("is-open"));
   });
 
   document.addEventListener("keydown", (event) => {
-    if (
-      event.key === "Escape" &&
-      aboutPanel.classList.contains("is-open")
-    ) {
-      closeAbout();
+    if (event.key === "Escape" && aboutPanel.classList.contains("is-open")) {
+      setAboutState(false);
     }
   });
 }
