@@ -83,7 +83,7 @@ body.is-about-open {
   position: relative;
   z-index: 2;
 
-  margin: auto 0 0;
+  margin: 0;
 
   color: var(--color-text);
   font-size: clamp(1.2rem, 3.5vw, 4rem);
@@ -155,20 +155,24 @@ body.is-about-open {
 .about-panel__video {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
 
+  display: block;
   width: 100%;
   height: 100%;
 
   object-fit: cover;
+  pointer-events: none;
 }
 
 .about-panel__inner {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 2;
 
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
 
   width: 100%;
   height: 100%;
