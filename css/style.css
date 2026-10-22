@@ -311,13 +311,14 @@ body.is-about-open {
   display: block;
   width: clamp(80px, 8vw, 160px);
   height: auto;
-  margin-bottom: 1rem;
+  margin-bottom: var(--page-gap);
 }
 
 .site-footer__copyright {
   margin: 0;
+  color: var(--color-text);
   text-align: left;
-  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  font-size: clamp(1.2rem, 3.5vw, 4rem);
   line-height: 1.2;
 }
 
@@ -331,7 +332,8 @@ body.is-about-open {
     --page-gap: clamp(10px, 2.5vw, 20px);
   }
 
-  .hero__text {
+  .hero__text,
+  .site-footer__copyright {
     font-size: clamp(24px, 8vw, 32px);
   }
 
