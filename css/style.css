@@ -298,23 +298,27 @@ body.is-about-open {
 }
 
 .site-footer__inner {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
+  position: relative;
 
   min-height: 100vh;
   padding: var(--page-gap);
 }
 
 .site-footer__logo {
+  position: absolute;
+  top: var(--page-gap);
+  left: var(--page-gap);
+
   display: block;
   width: clamp(80px, 8vw, 160px);
   height: auto;
-  margin-bottom: var(--page-gap);
 }
 
 .site-footer__copyright {
+  position: absolute;
+  left: var(--page-gap);
+  bottom: var(--page-gap);
+
   margin: 0;
   color: var(--color-text);
   text-align: left;
