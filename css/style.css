@@ -158,7 +158,7 @@ body.is-about-open {
   inset: 0;
   z-index: 2;
 
-  background: rgba(32, 32, 32, 0.3);
+  background: rgba(32, 32, 32, 0.5);
   pointer-events: none;
 }
 
