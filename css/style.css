@@ -152,6 +152,16 @@ body.is-about-open {
   transform: translateY(0);
 }
 
+.about-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  background: rgba(32, 32, 32, 0.3);
+  pointer-events: none;
+}
+
 .about-panel__video {
   position: absolute;
   inset: 0;
@@ -162,15 +172,6 @@ body.is-about-open {
   height: 100%;
 
   object-fit: cover;
-  pointer-events: none;
-}
-
-.about-panel__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-
-  background: rgba(32, 32, 32, 0.3);
   pointer-events: none;
 }
 
