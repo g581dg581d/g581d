@@ -14,7 +14,7 @@ if (siteFooter) {
       });
     },
     {
-      threshold: 0.15
+      threshold: 0.05
     }
   );
 
