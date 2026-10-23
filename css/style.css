@@ -32,7 +32,6 @@ body {
 
 html {
   background: var(--color-bg);
-  scrollbar-gutter: stable;
 }
 
 body {
@@ -42,6 +41,11 @@ body {
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-style: normal;
+}
+
+html.is-about-open,
+body.is-about-open {
+  overscroll-behavior: none;
 }
 
 .display-text {
