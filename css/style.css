@@ -307,6 +307,7 @@ main {
   margin-bottom: 100vh;
 
   background: var(--color-accent);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.18);
 }
 
 .accent-panel__text {
@@ -328,7 +329,7 @@ main {
 
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
 
   width: 100%;
   min-height: 100vh;
