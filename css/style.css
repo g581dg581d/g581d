@@ -43,6 +43,15 @@ body {
   font-style: normal;
 }
 
+html.is-about-open,
+body.is-about-open {
+  overflow: hidden;
+}
+
+body.is-about-open {
+  padding-right: var(--scrollbar-width, 0px);
+}
+
 .display-text {
   margin: 0;
 
