@@ -1,104 +1,85 @@
+const heroVideo = document.querySelector(".hero__video");
+const accentPanel = document.querySelector(".accent-panel");
+const siteFooter = document.querySelector(".site-footer");
+
+const aboutButton = document.querySelector(".about-button");
+const aboutPanel = document.querySelector(".about-panel");
+
+let scrollTicking = false;
+
+
 /* --------------------------------------------------
-   Footer Reveal
+   Scroll Effects
 -------------------------------------------------- */
 
-const siteFooter = document.querySelector(".site-footer");
-const accentPanel = document.querySelector(".accent-panel");
+const updateScrollEffects = () => {
+  const viewportHeight = window.innerHeight;
 
-if (siteFooter && accentPanel) {
-  let footerTicking = false;
+  if (heroVideo) {
+    const startOpacity = 0.5;
+    const fadeDistance = viewportHeight * 0.25;
+    const opacity = startOpacity * (1 - window.scrollY / fadeDistance);
 
-  const updateFooterReveal = () => {
+    heroVideo.style.opacity = Math.max(opacity, 0);
+  }
+
+  if (siteFooter && accentPanel) {
     const { bottom } = accentPanel.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-
-    const progress = Math.min(
+    const reveal = Math.min(
       Math.max((viewportHeight - bottom) / viewportHeight, 0),
       1
     );
 
-    siteFooter.style.setProperty("--footer-reveal", progress.toFixed(3));
-    footerTicking = false;
-  };
+    siteFooter.style.setProperty("--footer-reveal", reveal.toFixed(3));
+  }
 
-  const requestFooterRevealUpdate = () => {
-    if (footerTicking) return;
+  scrollTicking = false;
+};
 
-    footerTicking = true;
-    window.requestAnimationFrame(updateFooterReveal);
-  };
+const requestScrollEffectsUpdate = () => {
+  if (scrollTicking) return;
 
-  updateFooterReveal();
+  scrollTicking = true;
+  window.requestAnimationFrame(updateScrollEffects);
+};
 
-  window.addEventListener("scroll", requestFooterRevealUpdate, {
-    passive: true
-  });
+updateScrollEffects();
 
-  window.addEventListener("resize", requestFooterRevealUpdate);
-}
+window.addEventListener("scroll", requestScrollEffectsUpdate, {
+  passive: true
+});
 
-
-/* --------------------------------------------------
-   Hero Video Fade
--------------------------------------------------- */
-
-const heroVideo = document.querySelector(".hero__video");
-
-if (heroVideo) {
-  const updateHeroVideoOpacity = () => {
-    const startOpacity = 0.5;
-    const fadeDistance = window.innerHeight * 0.25;
-    const opacity = startOpacity * (1 - window.scrollY / fadeDistance);
-
-    heroVideo.style.opacity = Math.max(opacity, 0);
-  };
-
-  updateHeroVideoOpacity();
-
-  window.addEventListener("scroll", updateHeroVideoOpacity, {
-    passive: true
-  });
-}
+window.addEventListener("resize", requestScrollEffectsUpdate);
 
 
 /* --------------------------------------------------
    About Panel
 -------------------------------------------------- */
 
-const aboutButton = document.querySelector(".about-button");
-const aboutPanel = document.querySelector(".about-panel");
-const aboutVideo = document.querySelector(".about-panel__video");
-
-if (aboutVideo) {
-  aboutVideo.load();
-}
-
 if (aboutButton && aboutPanel) {
-  let lockedScrollY = window.scrollY;
+  const blockedKeys = new Set([
+    "ArrowUp",
+    "ArrowDown",
+    "PageUp",
+    "PageDown",
+    "Home",
+    "End",
+    " "
+  ]);
 
-  const preventAboutScroll = (event) => {
+  const preventScroll = (event) => {
     event.preventDefault();
   };
 
-  const lockAboutScroll = () => {
-    lockedScrollY = window.scrollY;
+  const setScrollLock = (isLocked) => {
+    const method = isLocked ? "addEventListener" : "removeEventListener";
 
-    window.addEventListener("wheel", preventAboutScroll, { passive: false });
-    window.addEventListener("touchmove", preventAboutScroll, { passive: false });
-  };
-
-  const unlockAboutScroll = () => {
-    window.removeEventListener("wheel", preventAboutScroll);
-    window.removeEventListener("touchmove", preventAboutScroll);
-    window.scrollTo(0, lockedScrollY);
+    window[method]("wheel", preventScroll, { passive: false });
+    window[method]("touchmove", preventScroll, { passive: false });
   };
 
   const setAboutState = (isOpen) => {
-    if (isOpen) {
-      lockAboutScroll();
-    } else {
-      unlockAboutScroll();
-    }
+    setScrollLock(isOpen);
 
     aboutPanel.classList.toggle("is-open", isOpen);
     aboutButton.classList.toggle("is-open", isOpen);
@@ -112,21 +93,21 @@ if (aboutButton && aboutPanel) {
   };
 
   aboutButton.addEventListener("click", () => {
-    setAboutState(!aboutPanel.classList.contains("is-open"));
+    const isOpen = aboutPanel.classList.contains("is-open");
+    setAboutState(!isOpen);
   });
 
   document.addEventListener("keydown", (event) => {
     const isOpen = aboutPanel.classList.contains("is-open");
 
-    if (event.key === "Escape" && isOpen) {
+    if (!isOpen) return;
+
+    if (event.key === "Escape") {
       setAboutState(false);
       return;
     }
 
-    if (
-      isOpen &&
-      ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)
-    ) {
+    if (blockedKeys.has(event.key)) {
       event.preventDefault();
     }
   });
