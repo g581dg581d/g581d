@@ -168,6 +168,12 @@ body.is-about-open {
   color: var(--color-footer-bg);
 }
 
+.about-button--footer.has-loaded {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
 .about-button--footer.is-overlay-control {
   position: fixed;
   top: var(--page-gap);
