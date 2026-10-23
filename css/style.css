@@ -226,7 +226,8 @@ main {
   position: relative;
   z-index: 2;
 
-  background: var(--color-bg);
+  background: #f5f5f5;
+  color: #202020;
 }
 
 .work-grid {
@@ -357,6 +358,7 @@ main {
   left: var(--page-gap);
   bottom: var(--page-gap);
 
+  color: #202020;
   text-align: left;
 }
 
