@@ -74,15 +74,30 @@ if (aboutVideo) {
 }
 
 if (aboutButton && aboutPanel) {
+  let lockedScrollY = window.scrollY;
+
+  const preventAboutScroll = (event) => {
+    event.preventDefault();
+  };
+
+  const lockAboutScroll = () => {
+    lockedScrollY = window.scrollY;
+
+    window.addEventListener("wheel", preventAboutScroll, { passive: false });
+    window.addEventListener("touchmove", preventAboutScroll, { passive: false });
+  };
+
+  const unlockAboutScroll = () => {
+    window.removeEventListener("wheel", preventAboutScroll);
+    window.removeEventListener("touchmove", preventAboutScroll);
+    window.scrollTo(0, lockedScrollY);
+  };
+
   const setAboutState = (isOpen) => {
     if (isOpen) {
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      document.documentElement.style.setProperty(
-        "--layout-scrollbar-width",
-        `${scrollbarWidth}px`
-      );
+      lockAboutScroll();
     } else {
-      document.documentElement.style.setProperty("--layout-scrollbar-width", "0px");
+      unlockAboutScroll();
     }
 
     aboutPanel.classList.toggle("is-open", isOpen);
@@ -101,8 +116,18 @@ if (aboutButton && aboutPanel) {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && aboutPanel.classList.contains("is-open")) {
+    const isOpen = aboutPanel.classList.contains("is-open");
+
+    if (event.key === "Escape" && isOpen) {
       setAboutState(false);
+      return;
+    }
+
+    if (
+      isOpen &&
+      ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)
+    ) {
+      event.preventDefault();
     }
   });
 }
