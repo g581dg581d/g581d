@@ -57,7 +57,33 @@ window.addEventListener("resize", requestScrollEffectsUpdate);
 -------------------------------------------------- */
 
 if (aboutButton && aboutPanel) {
+  const scrollKeys = new Set([
+    "ArrowUp",
+    "ArrowDown",
+    "PageUp",
+    "PageDown",
+    "Home",
+    "End",
+    " "
+  ]);
+
+  const preventPageScroll = (event) => {
+    event.preventDefault();
+  };
+
+  const setScrollLock = (isLocked) => {
+    const method = isLocked ? "addEventListener" : "removeEventListener";
+
+    window[method]("wheel", preventPageScroll, { passive: false });
+    window[method]("touchmove", preventPageScroll, { passive: false });
+
+    document.documentElement.classList.toggle("is-about-open", isLocked);
+    document.body.classList.toggle("is-about-open", isLocked);
+  };
+
   const setAboutState = (isOpen) => {
+    setScrollLock(isOpen);
+
     aboutPanel.classList.toggle("is-open", isOpen);
     aboutButton.classList.toggle("is-open", isOpen);
 
@@ -67,16 +93,21 @@ if (aboutButton && aboutPanel) {
   };
 
   aboutButton.addEventListener("click", () => {
-    const isOpen = aboutPanel.classList.contains("is-open");
-    setAboutState(!isOpen);
+    setAboutState(!aboutPanel.classList.contains("is-open"));
   });
 
   document.addEventListener("keydown", (event) => {
-    if (
-      event.key === "Escape" &&
-      aboutPanel.classList.contains("is-open")
-    ) {
+    const isOpen = aboutPanel.classList.contains("is-open");
+
+    if (!isOpen) return;
+
+    if (event.key === "Escape") {
       setAboutState(false);
+      return;
+    }
+
+    if (scrollKeys.has(event.key)) {
+      event.preventDefault();
     }
   });
 }
