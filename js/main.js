@@ -57,21 +57,30 @@ window.addEventListener("resize", requestScrollEffectsUpdate);
 -------------------------------------------------- */
 
 if (aboutButton && aboutPanel) {
-  let lockedScrollY = 0;
+  const transitionDuration = 800;
+  let lockTimer;
 
-  const setScrollLock = (isLocked) => {
-    if (isLocked) {
-      lockedScrollY = window.scrollY;
-      document.body.style.top = `-${lockedScrollY}px`;
-      return;
+  const setScrollbarLock = (isLocked) => {
+    document.documentElement.classList.toggle("is-about-locked", isLocked);
+    document.body.classList.toggle("is-about-locked", isLocked);
+
+    if (!isLocked) {
+      document.documentElement.style.removeProperty("--scrollbar-width");
     }
-
-    document.body.style.top = "";
-    window.scrollTo(0, lockedScrollY);
   };
 
   const setAboutState = (isOpen) => {
-    setScrollLock(isOpen);
+    clearTimeout(lockTimer);
+
+    if (isOpen) {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+
+      document.documentElement.style.setProperty(
+        "--scrollbar-width",
+        `${scrollbarWidth}px`
+      );
+    }
 
     aboutPanel.classList.toggle("is-open", isOpen);
     aboutButton.classList.toggle("is-open", isOpen);
@@ -82,6 +91,10 @@ if (aboutButton && aboutPanel) {
 
     document.documentElement.classList.toggle("is-about-open", isOpen);
     document.body.classList.toggle("is-about-open", isOpen);
+
+    lockTimer = window.setTimeout(() => {
+      setScrollbarLock(isOpen);
+    }, transitionDuration);
   };
 
   aboutButton.addEventListener("click", () => {
