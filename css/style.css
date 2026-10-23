@@ -176,6 +176,10 @@ body.is-about-open {
 
   background: var(--color-text);
   color: var(--color-bg);
+
+  opacity: 1;
+  transform: none;
+  animation: none;
 }
 
 .about-panel {
