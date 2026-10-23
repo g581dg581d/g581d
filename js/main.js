@@ -78,6 +78,7 @@ if (aboutButtons.length && aboutPanel) {
     if (!activeFooterButton || !footerButtonParent) return;
 
     activeFooterButton.classList.remove("is-overlay-control");
+    activeFooterButton.classList.add("has-loaded");
 
     if (footerButtonNextSibling) {
       footerButtonParent.insertBefore(
