@@ -58,6 +58,21 @@ window.addEventListener("resize", requestScrollEffectsUpdate);
 
 if (aboutButton && aboutPanel) {
   const setAboutState = (isOpen) => {
+    if (isOpen) {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+
+      document.documentElement.style.setProperty(
+        "--scrollbar-width",
+        `${scrollbarWidth}px`
+      );
+    } else {
+      document.documentElement.style.removeProperty("--scrollbar-width");
+    }
+
+    document.documentElement.classList.toggle("is-about-open", isOpen);
+    document.body.classList.toggle("is-about-open", isOpen);
+
     aboutPanel.classList.toggle("is-open", isOpen);
     aboutButton.classList.toggle("is-open", isOpen);
 
