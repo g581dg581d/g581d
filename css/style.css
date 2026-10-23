@@ -126,10 +126,10 @@ body {
 -------------------------------------------------- */
 
 .about-button {
-  position: fixed;
+  position: absolute;
   top: var(--page-gap);
   right: var(--page-gap);
-  z-index: 200;
+  z-index: 3;
 
   padding: 0.8em 1.4em;
 
@@ -144,6 +144,10 @@ body {
   line-height: 1;
 
   cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 2.25s ease 0.85s forwards;
 }
 
 .about-panel {
