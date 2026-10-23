@@ -7,7 +7,7 @@
   --color-text: #f5f5f5;
   --color-accent: rgb(255, 0, 0);
   --color-footer-bg: #202020;
-  --color-footer-text: #202020;
+  --color-footer-text: #f5f5f5;
 
   --page-gap: clamp(20px, 2vw, 35px);
   --display-size: clamp(1.2rem, 3.5vw, 4rem);
@@ -164,8 +164,8 @@ body.is-about-open {
   top: var(--page-gap);
   right: var(--page-gap);
 
-  background: var(--color-footer-text);
-  color: var(--color-footer-bg);
+  background: #f5f5f5;
+  color: #202020;
 }
 
 .about-button--footer.has-loaded {
@@ -371,7 +371,7 @@ main {
   left: var(--page-gap);
   bottom: var(--page-gap);
 
-  color: var(--color-footer-text);
+  color: #f5f5f5;
   text-align: left;
 }
 
