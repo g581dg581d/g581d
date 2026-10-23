@@ -307,7 +307,7 @@ main {
   margin-bottom: 100vh;
 
   background: var(--color-accent);
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 30px 160px rgba(0, 0, 0, 0.10);
 }
 
 .accent-panel__text {
