@@ -59,10 +59,47 @@ window.addEventListener("resize", requestScrollEffectsUpdate);
 
 if (aboutButtons.length && aboutPanel) {
   let lockedScrollY = 0;
+  let activeFooterButton = null;
+  let footerButtonParent = null;
+  let footerButtonNextSibling = null;
 
-  const setAboutState = (isOpen) => {
+  const moveFooterButtonToOverlay = (button) => {
+    if (!button.classList.contains("about-button--footer")) return;
+
+    activeFooterButton = button;
+    footerButtonParent = button.parentNode;
+    footerButtonNextSibling = button.nextSibling;
+
+    button.classList.add("is-overlay-control");
+    document.body.appendChild(button);
+  };
+
+  const restoreFooterButton = () => {
+    if (!activeFooterButton || !footerButtonParent) return;
+
+    activeFooterButton.classList.remove("is-overlay-control");
+
+    if (footerButtonNextSibling) {
+      footerButtonParent.insertBefore(
+        activeFooterButton,
+        footerButtonNextSibling
+      );
+    } else {
+      footerButtonParent.appendChild(activeFooterButton);
+    }
+
+    activeFooterButton = null;
+    footerButtonParent = null;
+    footerButtonNextSibling = null;
+  };
+
+  const setAboutState = (isOpen, triggerButton = null) => {
     if (isOpen) {
       lockedScrollY = window.scrollY;
+
+      if (triggerButton) {
+        moveFooterButtonToOverlay(triggerButton);
+      }
 
       document.documentElement.classList.add("is-about-open");
       document.body.classList.add("is-about-open");
@@ -74,6 +111,8 @@ if (aboutButtons.length && aboutPanel) {
 
       document.body.style.top = "";
       window.scrollTo(0, lockedScrollY);
+
+      restoreFooterButton();
     }
 
     aboutPanel.classList.toggle("is-open", isOpen);
@@ -89,7 +128,8 @@ if (aboutButtons.length && aboutPanel) {
 
   aboutButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      setAboutState(!aboutPanel.classList.contains("is-open"));
+      const isOpen = aboutPanel.classList.contains("is-open");
+      setAboutState(!isOpen, button);
     });
   });
 
