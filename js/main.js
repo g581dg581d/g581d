@@ -57,25 +57,17 @@ window.addEventListener("resize", requestScrollEffectsUpdate);
 -------------------------------------------------- */
 
 if (aboutButton && aboutPanel) {
-  const blockedKeys = new Set([
-    "ArrowUp",
-    "ArrowDown",
-    "PageUp",
-    "PageDown",
-    "Home",
-    "End",
-    " "
-  ]);
-
-  const preventScroll = (event) => {
-    event.preventDefault();
-  };
+  let lockedScrollY = 0;
 
   const setScrollLock = (isLocked) => {
-    const method = isLocked ? "addEventListener" : "removeEventListener";
+    if (isLocked) {
+      lockedScrollY = window.scrollY;
+      document.body.style.top = `-${lockedScrollY}px`;
+      return;
+    }
 
-    window[method]("wheel", preventScroll, { passive: false });
-    window[method]("touchmove", preventScroll, { passive: false });
+    document.body.style.top = "";
+    window.scrollTo(0, lockedScrollY);
   };
 
   const setAboutState = (isOpen) => {
@@ -98,17 +90,11 @@ if (aboutButton && aboutPanel) {
   });
 
   document.addEventListener("keydown", (event) => {
-    const isOpen = aboutPanel.classList.contains("is-open");
-
-    if (!isOpen) return;
-
-    if (event.key === "Escape") {
+    if (
+      event.key === "Escape" &&
+      aboutPanel.classList.contains("is-open")
+    ) {
       setAboutState(false);
-      return;
-    }
-
-    if (blockedKeys.has(event.key)) {
-      event.preventDefault();
     }
   });
 }
