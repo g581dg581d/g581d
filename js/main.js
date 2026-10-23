@@ -57,31 +57,7 @@ window.addEventListener("resize", requestScrollEffectsUpdate);
 -------------------------------------------------- */
 
 if (aboutButton && aboutPanel) {
-  const transitionDuration = 800;
-  let lockTimer;
-
-  const setScrollbarLock = (isLocked) => {
-    document.documentElement.classList.toggle("is-about-locked", isLocked);
-    document.body.classList.toggle("is-about-locked", isLocked);
-
-    if (!isLocked) {
-      document.documentElement.style.removeProperty("--scrollbar-width");
-    }
-  };
-
   const setAboutState = (isOpen) => {
-    clearTimeout(lockTimer);
-
-    if (isOpen) {
-      const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
-
-      document.documentElement.style.setProperty(
-        "--scrollbar-width",
-        `${scrollbarWidth}px`
-      );
-    }
-
     aboutPanel.classList.toggle("is-open", isOpen);
     aboutButton.classList.toggle("is-open", isOpen);
 
@@ -91,10 +67,6 @@ if (aboutButton && aboutPanel) {
 
     document.documentElement.classList.toggle("is-about-open", isOpen);
     document.body.classList.toggle("is-about-open", isOpen);
-
-    lockTimer = window.setTimeout(() => {
-      setScrollbarLock(isOpen);
-    }, transitionDuration);
   };
 
   aboutButton.addEventListener("click", () => {
