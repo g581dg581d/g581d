@@ -226,8 +226,7 @@ main {
   position: relative;
   z-index: 2;
 
-  background: #f5f5f5;
-  color: #202020;
+  background: var(--color-bg);
 }
 
 .work-grid {
@@ -334,7 +333,8 @@ main {
   width: 100%;
   min-height: 100vh;
 
-  background: var(--color-bg);
+  background: #f5f5f5;
+  color: #202020;
 }
 
 .site-footer__inner {
