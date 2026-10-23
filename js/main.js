@@ -75,12 +75,6 @@ if (aboutVideo) {
 
 if (aboutButton && aboutPanel) {
   const setAboutState = (isOpen) => {
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    document.documentElement.style.setProperty(
-      "--scrollbar-compensation",
-      isOpen ? `${scrollbarWidth}px` : "0px"
-    );
-
     aboutPanel.classList.toggle("is-open", isOpen);
     aboutButton.classList.toggle("is-open", isOpen);
 
