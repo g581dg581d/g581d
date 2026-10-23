@@ -25,8 +25,9 @@ const updateScrollEffects = () => {
 
   if (siteFooter && footerRevealPanel) {
     const { bottom } = footerRevealPanel.getBoundingClientRect();
+    const footerHeight = siteFooter.offsetHeight;
     const reveal = Math.min(
-      Math.max((viewportHeight - bottom) / viewportHeight, 0),
+      Math.max((viewportHeight - bottom) / footerHeight, 0),
       1
     );
 
