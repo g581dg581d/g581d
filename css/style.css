@@ -45,7 +45,12 @@ body {
 
 html.is-about-open,
 body.is-about-open {
-  overscroll-behavior: none;
+  overflow: hidden;
+}
+
+body.is-about-open {
+  position: fixed;
+  width: 100%;
 }
 
 .display-text {
