@@ -80,7 +80,7 @@ body.is-about-open {
   align-items: flex-end;
 
   width: 100%;
-  min-height: 100vh;
+  min-height: 50vh;
   padding: var(--page-gap);
 
   overflow: hidden;
@@ -288,8 +288,8 @@ main {
   z-index: 2;
 
   width: 100%;
-  min-height: 100vh;
-  margin-bottom: 100vh;
+  min-height: 60vh;
+  margin-bottom: 50vh;
 
   background: var(--color-bg);
   box-shadow: 0 30px 160px rgba(0, 0, 0, 0.1);
@@ -316,7 +316,7 @@ main {
   z-index: 1;
 
   width: 100%;
-  min-height: 100vh;
+  min-height: 50vh;
 
   background: var(--color-footer-bg);
   color: var(--color-footer-text);
