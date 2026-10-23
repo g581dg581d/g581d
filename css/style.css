@@ -48,15 +48,6 @@ body.is-about-open {
   overscroll-behavior: none;
 }
 
-html.is-about-locked,
-body.is-about-locked {
-  overflow: hidden;
-}
-
-body.is-about-locked {
-  padding-right: var(--scrollbar-width, 0px);
-}
-
 .display-text {
   margin: 0;
 
