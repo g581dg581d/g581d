@@ -42,6 +42,15 @@ body.is-about-open {
   overscroll-behavior: none;
 }
 
+html.is-about-open {
+  scrollbar-color: transparent transparent;
+}
+
+html.is-about-open::-webkit-scrollbar-track,
+html.is-about-open::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
 .display-text {
   margin: 0;
 
