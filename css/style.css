@@ -309,6 +309,12 @@ main {
   background: var(--color-accent);
 }
 
+.accent-panel__text {
+  position: absolute;
+  left: var(--page-gap);
+  bottom: var(--page-gap);
+}
+
 
 /* --------------------------------------------------
    Footer Reveal
