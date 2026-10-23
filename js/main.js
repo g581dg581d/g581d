@@ -64,9 +64,6 @@ if (aboutButton && aboutPanel) {
     aboutButton.textContent = isOpen ? "×" : "About";
     aboutButton.setAttribute("aria-expanded", String(isOpen));
     aboutPanel.setAttribute("aria-hidden", String(!isOpen));
-
-    document.documentElement.classList.toggle("is-about-open", isOpen);
-    document.body.classList.toggle("is-about-open", isOpen);
   };
 
   aboutButton.addEventListener("click", () => {
