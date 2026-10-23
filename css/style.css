@@ -80,7 +80,7 @@ body.is-about-open {
   align-items: flex-end;
 
   width: 100%;
-  min-height: 50vh;
+  min-height: 100vh;
   padding: var(--page-gap);
 
   overflow: hidden;
@@ -288,18 +288,16 @@ main {
   z-index: 2;
 
   width: 100%;
-  min-height: 60vh;
-  margin-bottom: 50vh;
+  margin-bottom: 70vh;
+  padding:
+    clamp(80px, 10vw, 180px)
+    var(--page-gap);
 
   background: var(--color-bg);
   box-shadow: 0 30px 160px rgba(0, 0, 0, 0.1);
 }
 
 .footer-reveal-panel__text {
-  position: absolute;
-  left: var(--page-gap);
-  bottom: var(--page-gap);
-
   text-align: left;
 }
 
@@ -312,11 +310,13 @@ main {
   --footer-reveal: 0;
 
   position: fixed;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 1;
 
   width: 100%;
-  min-height: 50vh;
+  height: 70vh;
 
   background: var(--color-footer-bg);
   color: var(--color-footer-text);
@@ -325,7 +325,7 @@ main {
 .site-footer__inner {
   position: relative;
 
-  min-height: 100vh;
+  height: 100%;
   padding: var(--page-gap);
 
   opacity: var(--footer-reveal);
