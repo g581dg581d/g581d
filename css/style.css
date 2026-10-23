@@ -168,6 +168,16 @@ body.is-about-open {
   color: var(--color-footer-bg);
 }
 
+.about-button--footer.is-overlay-control {
+  position: fixed;
+  top: var(--page-gap);
+  right: var(--page-gap);
+  z-index: 200;
+
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
 .about-panel {
   position: fixed;
   inset: 0;
