@@ -1,8 +1,8 @@
 const heroVideo = document.querySelector(".hero__video");
-const footerRevealPanel = document.querySelector(".footer-reveal-panel");
+const mainContent = document.querySelector("main");
 const siteFooter = document.querySelector(".site-footer");
 
-const aboutButton = document.querySelector(".about-button");
+const aboutButtons = document.querySelectorAll(".about-button");
 const aboutPanel = document.querySelector(".about-panel");
 
 let scrollTicking = false;
@@ -23,8 +23,8 @@ const updateScrollEffects = () => {
     heroVideo.style.opacity = Math.max(opacity, 0);
   }
 
-  if (siteFooter && footerRevealPanel) {
-    const { bottom } = footerRevealPanel.getBoundingClientRect();
+  if (siteFooter && mainContent) {
+    const { bottom } = mainContent.getBoundingClientRect();
     const footerHeight = siteFooter.offsetHeight;
     const reveal = Math.min(
       Math.max((viewportHeight - bottom) / footerHeight, 0),
@@ -57,7 +57,7 @@ window.addEventListener("resize", requestScrollEffectsUpdate);
    About Panel
 -------------------------------------------------- */
 
-if (aboutButton && aboutPanel) {
+if (aboutButtons.length && aboutPanel) {
   let lockedScrollY = 0;
 
   const setAboutState = (isOpen) => {
@@ -77,15 +77,20 @@ if (aboutButton && aboutPanel) {
     }
 
     aboutPanel.classList.toggle("is-open", isOpen);
-    aboutButton.classList.toggle("is-open", isOpen);
 
-    aboutButton.textContent = isOpen ? "×" : "About";
-    aboutButton.setAttribute("aria-expanded", String(isOpen));
+    aboutButtons.forEach((button) => {
+      button.classList.toggle("is-open", isOpen);
+      button.textContent = isOpen ? "×" : "About";
+      button.setAttribute("aria-expanded", String(isOpen));
+    });
+
     aboutPanel.setAttribute("aria-hidden", String(!isOpen));
   };
 
-  aboutButton.addEventListener("click", () => {
-    setAboutState(!aboutPanel.classList.contains("is-open"));
+  aboutButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setAboutState(!aboutPanel.classList.contains("is-open"));
+    });
   });
 
   document.addEventListener("keydown", (event) => {
