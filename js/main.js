@@ -56,20 +56,21 @@ window.addEventListener("resize", requestScrollEffectsUpdate);
    About Panel
 -------------------------------------------------- */
 
+const updateScrollbarWidth = () => {
+  const scrollbarWidth =
+    window.innerWidth - document.documentElement.clientWidth;
+
+  document.documentElement.style.setProperty(
+    "--scrollbar-width",
+    `${Math.max(scrollbarWidth, 0)}px`
+  );
+};
+
+updateScrollbarWidth();
+window.addEventListener("resize", updateScrollbarWidth);
+
 if (aboutButton && aboutPanel) {
   const setAboutState = (isOpen) => {
-    if (isOpen) {
-      const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
-
-      document.documentElement.style.setProperty(
-        "--scrollbar-width",
-        `${scrollbarWidth}px`
-      );
-    } else {
-      document.documentElement.style.removeProperty("--scrollbar-width");
-    }
-
     document.documentElement.classList.toggle("is-about-open", isOpen);
     document.body.classList.toggle("is-about-open", isOpen);
 
