@@ -78,7 +78,7 @@ if (aboutButton && aboutPanel) {
     aboutPanel.classList.toggle("is-open", isOpen);
     aboutButton.classList.toggle("is-open", isOpen);
 
-    aboutButton.textContent = isOpen ? "Close" : "About";
+    aboutButton.textContent = isOpen ? "×" : "About";
     aboutButton.setAttribute("aria-expanded", String(isOpen));
     aboutPanel.setAttribute("aria-hidden", String(!isOpen));
 
