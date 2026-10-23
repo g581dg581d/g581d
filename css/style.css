@@ -43,11 +43,6 @@ body {
   font-style: normal;
 }
 
-html.is-about-open,
-body.is-about-open {
-  overscroll-behavior: none;
-}
-
 .display-text {
   margin: 0;
 
@@ -133,7 +128,7 @@ body.is-about-open {
 .about-button {
   position: fixed;
   top: var(--page-gap);
-  right: calc(var(--page-gap) + clamp(10px, 1vw, 20px));
+  right: var(--page-gap);
   z-index: 200;
 
   padding: 0.8em 1.4em;
