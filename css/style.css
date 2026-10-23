@@ -13,6 +13,7 @@
   --display-size: clamp(1.2rem, 3.5vw, 4rem);
   --display-line-height: 1.2;
   --logo-width: clamp(80px, 8vw, 160px);
+  --scrollbar-width: 0px;
 }
 
 
@@ -32,6 +33,7 @@ body {
 
 html {
   background: var(--color-bg);
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -48,8 +50,10 @@ body.is-about-open {
   overflow: hidden;
 }
 
-body.is-about-open {
-  padding-right: var(--scrollbar-width, 0px);
+@supports not (scrollbar-gutter: stable) {
+  body.is-about-open {
+    padding-right: var(--scrollbar-width);
+  }
 }
 
 .display-text {
