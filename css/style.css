@@ -4,6 +4,7 @@
 
 :root {
   --color-bg: #202020;
+  --layout-scrollbar-width: 0px;
   --color-text: #f5f5f5;
   --color-accent: rgb(255, 0, 0);
 
@@ -40,6 +41,10 @@ body {
 html.is-about-open,
 body.is-about-open {
   overflow: hidden;
+}
+
+body.is-about-open {
+  padding-right: var(--layout-scrollbar-width);
 }
 
 .display-text {
