@@ -127,7 +127,7 @@ body.is-about-open {
 .about-button {
   position: fixed;
   top: var(--page-gap);
-  right: var(--page-gap);
+  right: calc(var(--page-gap) + clamp(10px, 1vw, 20px));
   z-index: 200;
 
   padding: 0.8em 1.4em;
