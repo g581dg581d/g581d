@@ -280,36 +280,10 @@ main {
 
 
 /* --------------------------------------------------
-   Ventures
+   Footer Reveal Panel
 -------------------------------------------------- */
 
-.ventures {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(20px, 3vw, 60px);
-
-  width: 100%;
-  padding:
-    clamp(30px, 3vw, 90px)
-    var(--page-gap)
-    clamp(100px, 12vw, 220px);
-}
-
-.ventures__title,
-.ventures__text {
-  margin: 0;
-
-  font-size: clamp(1.5rem, 2.5vw, 3rem);
-  line-height: 1.15;
-  font-weight: 400;
-}
-
-
-/* --------------------------------------------------
-   Accent
--------------------------------------------------- */
-
-.accent-panel {
+.footer-reveal-panel {
   position: relative;
   z-index: 2;
 
@@ -317,11 +291,11 @@ main {
   min-height: 100vh;
   margin-bottom: 100vh;
 
-  background: var(--color-accent);
+  background: var(--color-bg);
   box-shadow: 0 30px 160px rgba(0, 0, 0, 0.1);
 }
 
-.accent-panel__text {
+.footer-reveal-panel__text {
   position: absolute;
   left: var(--page-gap);
   bottom: var(--page-gap);
