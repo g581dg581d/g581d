@@ -330,13 +330,27 @@ main {
 
   width: 100%;
   height: 100vh;
+  overflow: hidden;
 
   background: var(--color-footer-bg);
   color: var(--color-footer-text);
 }
 
+.site-footer__video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  pointer-events: none;
+}
+
 .site-footer__inner {
   position: relative;
+  z-index: 1;
 
   height: 100%;
   padding: var(--page-gap);
