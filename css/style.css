@@ -46,13 +46,11 @@ body {
 html.is-about-open,
 body.is-about-open {
   overscroll-behavior: none;
-  scrollbar-color: transparent transparent;
 }
 
-html.is-about-open::-webkit-scrollbar,
-body.is-about-open::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+body.is-about-open {
+  position: fixed;
+  width: 100%;
 }
 
 .display-text {
