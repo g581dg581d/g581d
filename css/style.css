@@ -313,6 +313,9 @@ main {
   position: absolute;
   left: var(--page-gap);
   bottom: var(--page-gap);
+
+  margin: 0;
+  text-align: left;
 }
 
 
