@@ -1,5 +1,5 @@
 const heroVideo = document.querySelector(".hero__video");
-const accentPanel = document.querySelector(".accent-panel");
+const footerRevealPanel = document.querySelector(".footer-reveal-panel");
 const siteFooter = document.querySelector(".site-footer");
 
 const aboutButton = document.querySelector(".about-button");
@@ -23,8 +23,8 @@ const updateScrollEffects = () => {
     heroVideo.style.opacity = Math.max(opacity, 0);
   }
 
-  if (siteFooter && accentPanel) {
-    const { bottom } = accentPanel.getBoundingClientRect();
+  if (siteFooter && footerRevealPanel) {
+    const { bottom } = footerRevealPanel.getBoundingClientRect();
     const reveal = Math.min(
       Math.max((viewportHeight - bottom) / viewportHeight, 0),
       1
