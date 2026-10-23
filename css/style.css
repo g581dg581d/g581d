@@ -129,7 +129,7 @@ body {
   position: absolute;
   top: var(--page-gap);
   right: var(--page-gap);
-  z-index: 3;
+  z-index: 200;
 
   padding: 0.8em 1.4em;
 
