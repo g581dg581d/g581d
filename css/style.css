@@ -6,7 +6,7 @@
   --color-bg: #202020;
   --color-text: #f5f5f5;
   --color-accent: rgb(255, 0, 0);
-  --color-footer-bg: #454545;
+  --color-footer-bg: #f0f0f0;
   --color-footer-text: #202020;
 
   --page-gap: clamp(20px, 2vw, 35px);
