@@ -203,6 +203,7 @@ body.is-about-open {
 
   width: 100%;
   height: 100vh;
+  height: 100dvh;
 
   overflow: hidden;
 
@@ -241,6 +242,7 @@ body.is-about-open {
   width: 100%;
   min-height: 100%;
   padding: var(--page-gap);
+  padding-bottom: calc(var(--page-gap) + env(safe-area-inset-bottom));
 
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
